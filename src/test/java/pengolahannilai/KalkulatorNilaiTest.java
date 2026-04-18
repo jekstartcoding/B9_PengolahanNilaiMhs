@@ -31,7 +31,8 @@ class KalkulatorNilaiTest {
     // Test Case Nilai Akhir > 100 → error
     @Test
     void testHitungLebihDari100() {
-        double hasil = kalkulator.hitung(100, 100, 100);
+        // 100, 100, 101 → hasil = 0.3*100 + 0.3*100 + 0.4*101 = 100.4 > 100
+        double hasil = kalkulator.hitung(100, 100, 101);
         assertEquals(-1, hasil);
     }
 
