@@ -14,7 +14,7 @@ public class ValidatorTest {
     }
 
     // ======================
-    // PATH 1 : Nilai Valid
+    // PATH 1 : Nilai dalam rentang yang Valid
     // ======================
 
     @Test
