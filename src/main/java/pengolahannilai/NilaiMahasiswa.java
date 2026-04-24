@@ -18,6 +18,12 @@ public class NilaiMahasiswa {
         this.nilaiUas = nilaiUas;
     }
 
+    public void nilaiSetter(double nilaiTugas, double nilaiUts, double nilaiUas) {
+        this.nilaiTugas = nilaiTugas;
+        this.nilaiUts = nilaiUts;
+        this.nilaiUas = nilaiUas;
+    }
+
     // Method 1: Manipulasi Nilai Akhir
     public void hitungNilaiAkhir() {
         Validator validator = new Validator();

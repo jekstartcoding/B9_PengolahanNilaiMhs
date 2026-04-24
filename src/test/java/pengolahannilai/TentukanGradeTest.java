@@ -1,12 +1,18 @@
 package pengolahannilai;
 
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class TentukanGradeTest {
 
-    // Perhatikan: Kita tidak menggunakan @BeforeEach di sini karena setiap test case
-    // membutuhkan nilai instansiasi constructor NilaiMahasiswa yang berbeda-beda.
+    private NilaiMahasiswa mhs;
+
+    @BeforeEach
+    public void setUp() {
+        // Objek dilahirkan satu kali sebelum setiap test dengan nilai default
+        mhs = new NilaiMahasiswa(0, 0, 0);
+    }
 
     // ======================
     // PATH 1 : Nilai di luar batas (Tidak Valid)
@@ -14,8 +20,8 @@ public class TentukanGradeTest {
 
     @Test
     public void shouldReturnTidakValid_whenNilaiAkhirIsNegative() {
-        // setup: Memasukkan nilai -5
-        NilaiMahasiswa mhs = new NilaiMahasiswa(-5, -5, -5);
+        // setup
+        mhs.nilaiSetter(-5, -5, -5);
         mhs.hitungNilaiAkhir();
 
         // exercise
@@ -28,8 +34,8 @@ public class TentukanGradeTest {
 
     @Test
     public void shouldReturnTidakValid_whenNilaiAkhirExceeds100() {
-        // setup: Memasukkan nilai 110
-        NilaiMahasiswa mhs = new NilaiMahasiswa(110, 110, 110);
+        // setup
+        mhs.nilaiSetter(110, 110, 110);
         mhs.hitungNilaiAkhir();
 
         // exercise
@@ -47,7 +53,7 @@ public class TentukanGradeTest {
     @Test
     public void shouldReturnGradeA_whenNilaiAkhirIsMaximumBoundary() {
         // setup
-        NilaiMahasiswa mhs = new NilaiMahasiswa(100, 100, 100);
+        mhs.nilaiSetter(100, 100, 100);
         mhs.hitungNilaiAkhir();
 
         // exercise
@@ -59,9 +65,9 @@ public class TentukanGradeTest {
     }
 
     @Test
-    public void shouldReturnGradeA_whenNilaiAkhirIsWithinARange() {
+    public void shouldReturnGradeA_whenNilaiAkhirIsWithinRange() {
         // setup
-        NilaiMahasiswa mhs = new NilaiMahasiswa(96, 96, 96);
+        mhs.nilaiSetter(96, 96, 96);
         mhs.hitungNilaiAkhir();
 
         // exercise
@@ -73,9 +79,9 @@ public class TentukanGradeTest {
     }
 
     @Test
-    public void shouldReturnGradeA_whenNilaiAkhirIsALowerBoundary() {
+    public void shouldReturnGradeA_whenNilaiAkhirIsLowerBoundary() {
         // setup
-        NilaiMahasiswa mhs = new NilaiMahasiswa(85, 85, 85);
+        mhs.nilaiSetter(85, 85, 85);
         mhs.hitungNilaiAkhir();
 
         // exercise
@@ -91,9 +97,9 @@ public class TentukanGradeTest {
     // ======================
 
     @Test
-    public void shouldReturnGradeB_whenNilaiAkhirIsBUpperBoundary() {
+    public void shouldReturnGradeB_whenNilaiAkhirIsUpperBoundary() {
         // setup
-        NilaiMahasiswa mhs = new NilaiMahasiswa(84, 84, 84);
+        mhs.nilaiSetter(84, 84, 84);
         mhs.hitungNilaiAkhir();
 
         // exercise
@@ -105,9 +111,9 @@ public class TentukanGradeTest {
     }
 
     @Test
-    public void shouldReturnGradeB_whenNilaiAkhirIsWithinBRange() {
+    public void shouldReturnGradeB_whenNilaiAkhirIsWithinRange() {
         // setup
-        NilaiMahasiswa mhs = new NilaiMahasiswa(76, 76, 76);
+        mhs.nilaiSetter(76, 76, 76);
         mhs.hitungNilaiAkhir();
 
         // exercise
@@ -119,9 +125,9 @@ public class TentukanGradeTest {
     }
 
     @Test
-    public void shouldReturnGradeB_whenNilaiAkhirIsBLowerBoundary() {
+    public void shouldReturnGradeB_whenNilaiAkhirIsLowerBoundary() {
         // setup
-        NilaiMahasiswa mhs = new NilaiMahasiswa(70, 70, 70);
+        mhs.nilaiSetter(70, 70, 70);
         mhs.hitungNilaiAkhir();
 
         // exercise
@@ -137,9 +143,9 @@ public class TentukanGradeTest {
     // ======================
 
     @Test
-    public void shouldReturnGradeC_whenNilaiAkhirIsCUpperBoundary() {
+    public void shouldReturnGradeC_whenNilaiAkhirIsUpperBoundary() {
         // setup
-        NilaiMahasiswa mhs = new NilaiMahasiswa(69, 69, 69);
+        mhs.nilaiSetter(69, 69, 69);
         mhs.hitungNilaiAkhir();
 
         // exercise
@@ -151,9 +157,9 @@ public class TentukanGradeTest {
     }
 
     @Test
-    public void shouldReturnGradeC_whenNilaiAkhirIsWithinCRange() {
+    public void shouldReturnGradeC_whenNilaiAkhirIsWithinRange() {
         // setup
-        NilaiMahasiswa mhs = new NilaiMahasiswa(67, 67, 67);
+        mhs.nilaiSetter(67, 67, 67);
         mhs.hitungNilaiAkhir();
 
         // exercise
@@ -165,9 +171,9 @@ public class TentukanGradeTest {
     }
 
     @Test
-    public void shouldReturnGradeC_whenNilaiAkhirIsCLowerBoundary() {
+    public void shouldReturnGradeC_whenNilaiAkhirIsLowerBoundary() {
         // setup
-        NilaiMahasiswa mhs = new NilaiMahasiswa(60, 60, 60);
+        mhs.nilaiSetter(60, 60, 60);
         mhs.hitungNilaiAkhir();
 
         // exercise
@@ -183,9 +189,9 @@ public class TentukanGradeTest {
     // ======================
 
     @Test
-    public void shouldReturnGradeD_whenNilaiAkhirIsDUpperBoundary() {
+    public void shouldReturnGradeD_whenNilaiAkhirIsUpperBoundary() {
         // setup
-        NilaiMahasiswa mhs = new NilaiMahasiswa(59, 59, 59);
+        mhs.nilaiSetter(59, 59, 59);
         mhs.hitungNilaiAkhir();
 
         // exercise
@@ -197,9 +203,9 @@ public class TentukanGradeTest {
     }
 
     @Test
-    public void shouldReturnGradeD_whenNilaiAkhirIsWithinDRange() {
+    public void shouldReturnGradeD_whenNilaiAkhirIsWithinRange() {
         // setup
-        NilaiMahasiswa mhs = new NilaiMahasiswa(55, 55, 55);
+        mhs.nilaiSetter(55, 55, 55);
         mhs.hitungNilaiAkhir();
 
         // exercise
@@ -211,9 +217,9 @@ public class TentukanGradeTest {
     }
 
     @Test
-    public void shouldReturnGradeD_whenNilaiAkhirIsDLowerBoundary() {
+    public void shouldReturnGradeD_whenNilaiAkhirIsLowerBoundary() {
         // setup
-        NilaiMahasiswa mhs = new NilaiMahasiswa(50, 50, 50);
+        mhs.nilaiSetter(50, 50, 50);
         mhs.hitungNilaiAkhir();
 
         // exercise
@@ -229,9 +235,9 @@ public class TentukanGradeTest {
     // ======================
 
     @Test
-    public void shouldReturnGradeE_whenNilaiAkhirIsEUpperBoundary() {
+    public void shouldReturnGradeE_whenNilaiAkhirIsUpperBoundary() {
         // setup
-        NilaiMahasiswa mhs = new NilaiMahasiswa(49, 49, 49);
+        mhs.nilaiSetter(49, 49, 49);
         mhs.hitungNilaiAkhir();
 
         // exercise
@@ -243,9 +249,9 @@ public class TentukanGradeTest {
     }
 
     @Test
-    public void shouldReturnGradeE_whenNilaiAkhirIsWithinERange() {
+    public void shouldReturnGradeE_whenNilaiAkhirIsWithinRange() {
         // setup
-        NilaiMahasiswa mhs = new NilaiMahasiswa(33, 33, 33);
+        mhs.nilaiSetter(33, 33, 33);
         mhs.hitungNilaiAkhir();
 
         // exercise
@@ -257,12 +263,11 @@ public class TentukanGradeTest {
     }
 
     @Test
-    public void shouldReturnGradeE_whenNilaiAkhirIsELowerBoundary() {
+    public void shouldReturnGradeE_whenNilaiAkhirIsLowerBoundary() {
         // setup
-        // Trik Khusus: Kita sengaja TIDAK memanggil hitungNilaiAkhir() di sini.
-        // Jika dipanggil, input (0,0,0) akan diubah jadi -1 oleh Validator.
-        // Tanpa pemanggilan, nilaiAkhir akan tetap pada default Java yaitu 0.0 murni.
-        NilaiMahasiswa mhs = new NilaiMahasiswa(0, 0, 0);
+        mhs.nilaiSetter(0, 0, 0);
+        // Trik Khusus: Kita lewati hitungNilaiAkhir() agar nilai tidak diubah Validator menjadi -1.
+        // Dengan begini, nilaiAkhir di dalam class tetap bertahan di angka 0.0 murni.
 
         // exercise
         mhs.tentukanGrade();
